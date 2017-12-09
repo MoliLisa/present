@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Happy Birthday</title>
+
+<style>
+
+body {
+  background-color: #F4C1C8;
+}
+
+.gallery{
+	list-style: none;
+	padding: 50px;
+	max-width: 960px; 
+	text-align: center;
+	margin: auto;
+}
+ 
+ .overlay-figure{
+	position: relative;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	width: 300px;
+	height: 225rpx;
+	margin: 2px;
+	border: 5px solid #fff;
+	-moz-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+	-webkit-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+	box-shadow: 0 2px 2px rgba(0,0,0,.1);
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;        
+}
+	
+.overlay-figure-content {
+	width: 100%;
+	height: 100%;
+	-webkit-transform: scale(1.0) translateZ(0);
+	-moz-transform: scale(1.0) translateZ(0);
+		 transform: scale(1.0) translateZ(0);
+	-webkit-transition: -webkit-transform 0.5s ease 0.25s;
+	-moz-transition:    -moz-transform 0.5s ease 0.25s;
+		 transition:         transform 0.5s ease 0.25s;
+}
+	
+.onclickPic .overlay-figure-content {
+    -webkit-transform: scale(0.95) translateZ(0);
+       -moz-transform: scale(0.95) translateZ(0);
+            transform: scale(0.95) translateZ(0);
+}
+
+.overlay-figure-content > img {
+    display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.overlay-figure-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	background-image: linear-gradient(to bottom, rgba(67,78,88,0.20), rgba(67,78,88,0.80));
+}
+
+.onclickPic .overlay-figure-background {
+	  opacity: 1;
+}
+
+.overlay-figure-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+	font-size: auto;
+  font-family: adobe-clean, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: white;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.25s;
+     -moz-transition: opacity ease 0.25s;
+          transition: opacity ease 0.25s;
+}
+
+.onclickPic .overlay-figure-caption {
+    opacity: 1;
+}
+
+.overlay-figure-caption .contents {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.overlay-figure-caption .contents-stack {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	padding: 5%;
+}
+
+.overlay-figure-caption .title {
+	display: block;
+	margin-bottom: 0;
+	opacity: 0;
+	-webkit-transform: translateY(-100%) translateZ(0);
+	 -moz-transform: translateY(-100%) translateZ(0);
+		  transform: translateY(-100%) translateZ(0);
+	-webkit-transition: -webkit-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+	 -moz-transition:    -moz-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+		  transition:         transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+}
+
+.onclickPic .title {
+	opacity: 1;
+	-webkit-transform: translateY(0) translateZ(0);
+	 -moz-transform: translateY(0) translateZ(0);
+		  transform: translateY(0) translateZ(0);
+}
+
+.overlay-figure .separator {
+  display: block;
+  margin: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 2px;
+  width: 30%;
+  background-color: white;
+  -webkit-transform: scaleX(0) translateZ(0);
+     -moz-transform: scaleX(0) translateZ(0);
+          transform: scaleX(0) translateZ(0);
+  -webkit-transition: -webkit-transform 0.25s ease 0.25s;
+     -moz-transition:    -moz-transform 0.25s ease 0.25s;
+          transition:         transform 0.25s ease 0.25s;
+}
+
+.onclickPic
+.separator {
+  -webkit-transform: scaleX(1) translateZ(0);
+     -moz-transform: scaleX(1) translateZ(0);
+          transform: scaleX(1) translateZ(0);
+}
+
+.overlay-figure-caption 
+.text {
+	height: 0px;
+/*  display: none;*/
+  margin-top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100%) translateZ(0);
+     -moz-transform: translateY(100%) translateZ(0);
+          transform: translateY(100%) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+     -moz-transition:    -moz-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+          transition:         transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+}
+
+.onclickPic
+.text {
+	height: auto;
+  opacity: 1;
+  -webkit-transform: translateY(0) translateZ(0);
+     -moz-transform: translateY(0) translateZ(0);
+          transform: translateY(0) translateZ(0);
+}
+@media only screen and (min-width: 768px) {
+.overlay-figure:nth-child(1) {
+    left: 0px;
+    top: 0px;
+    -webkit-transform:rotate(-5deg);
+	-ms-transform:rotate(-5deg);
+	transform:rotate(-5deg);
+}
+.overlay-figure:nth-child(2){
+	left: 0px;
+	top: 0px;
+	-webkit-transform:rotate(4deg);
+	-ms-transform:rotate(4deg);
+	transform:rotate(4deg);
+}
+.overlay-figure:nth-child(3){
+	left:0px;
+	top:0;
+	-webkit-transform:rotate(-6deg);
+	-ms-transform:rotate(-6deg);
+	transform:rotate(-6deg);
+}
+.overlay-figure:nth-child(4){
+	left:0px;
+	top: 0px;
+	-webkit-transform:rotate(3deg);
+	-ms-transform:rotate(3deg);
+	transform:rotate(3deg);
+}
+.overlay-figure:nth-child(5){
+	left: 0px;
+	top: 0px;
+	-webkit-transform:rotate(-20deg);
+	-ms-transform:rotate(-20deg);
+	transform:rotate(-20deg);
+}
+.overlay-figure:nth-child(6){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(-3deg);
+	-ms-transform:rotate(-3deg);
+	transform:rotate(-3deg);
+}
+.overlay-figure:nth-child(7){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(-13deg);
+	-ms-transform:rotate(-13deg);
+	transform:rotate(-13deg);
+}
+.overlay-figure:nth-child(8){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(6deg);
+	-ms-transform:rotate(6deg);
+	transform:rotate(6deg);
+}
+.overlay-figure:nth-child(9){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(20deg);
+	-ms-transform:rotate(20deg);
+	transform:rotate(20deg);
+}
+.overlay-figure:nth-child(10){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(14deg);
+	-ms-transform:rotate(14deg);
+	transform:rotate(14deg);
+}
+.overlay-figure:nth-child(11){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(-2deg);
+	-ms-transform:rotate(-2deg);
+	transform:rotate(-2deg);
+}
+.overlay-figure:nth-child(12){
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(6deg);
+	-ms-transform:rotate(6deg);
+	transform:rotate(6deg);
+}
+.overlay-figure:nth-child(13){
+	width: 450px;
+	left: 0px;
+	top:0px;
+	-webkit-transform:rotate(-0deg);
+	-ms-transform:rotate(-0deg);
+	transform:rotate(-0deg);
+}
+.container img:hover{
+	-webkit-transform:rotate(0deg) scale(1.5);
+	-ms-transform:rotate(0deg) scale(1.5);
+	transform:rotate(0deg) scale(1.5);
+	-webkit-transition:all 0.5s ease-in;
+	transition:all 0.5s ease-in;
+	z-index: 2;
+}
+.overlay-figure:hover{
+	z-index: 10;
+	border: 5px solid transparent;
+	cursor: pointer;
+		-webkit-transform: rotate(0deg) scale(1.5);
+    -ms-transform: rotate(0deg) scale(1.5);
+    transform: rotate(0deg) scale(1.5);
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+    z-index: 2;
+/*
+	transform: scale(1.3);
+	transition: all 1s ease 0s;
+*/
+	
+
+}
+	
+
+	
+ 
+	 
+.hoverPic{ 
+	-webkit-filter: blur(2px) grayscale(1);
+	-moz-filter: blur(2px) grayscale(1);
+	-o-filter: blur(2px) grayscale(1);
+	-ms-filter: blur(2px) grayscale(1);
+	filter: blur(2px) grayscale(1);
+	opacity: .7;  	
+
+}
+}
+	
+@media only screen and (max-width: 768px) {
+.gallery{
+	text-align: center;
+	margin: auto;
+	padding: 0	
+}
+	
+.overlay-figure {
+	border: solid 1px black;
+}
+}
+</style>
+	
+<script src="js/prefixfree.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".overlay-figure").click(function(){
+		$(this).toggleClass("onclickPic");
+	});
+	$(".overlay-figure").hover(function(){
+		$(this).removeClass("hoverPic")
+			.siblings().addClass("hoverPic");
+	},function(){
+		$(".overlay-figure").removeClass("hoverPic").removeClass("onclickPic");
+	})
+ });
+</script>
+</head>
+
+<body>
+<div class="gallery">
+        <!--	1     -->
+<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/1_giovanna.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">故事的最开始</h2>
+        <div class="separator"></div>
+        <p class="text">还记得这位见证我们友谊开始的老师么，CSCA08早上九点钟的课，从开始互相占位，抄笔记，一直到后来A48我们一起做project，再到后来的后来。这是我们友谊的起点。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+	
+	<!--	2     -->
+<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/2_highpark.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">Highpark的樱花季</h2>
+        <div class="separator"></div>
+        <p class="text">看 年轻的我们，你还记得当时的情景么。一张照片虽然只定格了一瞬间 但却能勾起当事人更多更多的记忆，才发现我们一起做过这么多 说过这么多 经历了 成长了，有好，当然也有坏。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+	
+		<!--	3     -->
+<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/3_biking.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">你眼中风一样的女子</h2>
+        <div class="separator"></div>
+        <p class="text">看到照片里这样的我真是笑了半天，哈哈哈，原来我在你面前是这样一个真性情真实顽皮的我呀，心里好暖，有你这样包容着我~</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+	
+		<!--	4     -->
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/4_childhood.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">可爱的要死的你</h2>
+        <div class="separator"></div>
+        <p class="text">你还记得当时你微信发我这张照片我笑了多久么。。太可爱了，原谅我匮乏的词汇，可爱二字难以表达我的内心啊啊啊啊。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+	
+	
+		<!--	5     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/6_15birthday.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">23岁生日时</h2>
+        <div class="separator"></div>
+        <p class="text">那天你说：希望找到热爱的工作和到哪里都给你满满的爱的人。你看，想要的都得到了不是么，幸福莫过于此呀。经历的多了 记得多回顾下初心 感恩下身边的人 珍惜下已经拥有的。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		<!--	6     -->
+
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/9_momtoronto.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">美丽的贾妈 妈:P</h2>
+        <div class="separator"></div>
+        <p class="text">那次叔叔阿姨来看你 我们一起出去玩来着，留下了这张珍贵的回忆。我“外婆”如此健康美丽，一家人在一块这么恩爱幸福。生活难免不顺心，要努力好好经营！</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+
+		
+		<!--	7     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/7_bigbear.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">比Hedy还大只的🐻</h2>
+        <div class="separator"></div>
+        <p class="text">你未来的男朋友我一定会告诉他这个秘密：你有着一颗萌萌的少女心，买给你各式各样的毛绒玩具，一定不会错!(照片背后那个悲伤地故事 千言万语不知如何说起 爱你的人不曾离开过)</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		
+		<!--	8     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/8_hedynomakeup.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">素颜</h2>
+        <div class="separator"></div>
+        <p class="text">我就是想幸灾乐祸的提一下黑历史，看 当时的眉毛。哈哈哈，坏笑。开玩笑，其实没有啦，我一直觉得你素颜很美你是知道哒！</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		
+			<!--	9     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/5_coincident.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">机缘巧合</h2>
+        <div class="separator"></div>
+        <p class="text">真的，翻了一遍照片，发现我们经历了这么多，很感慨，要是没有照片很多都不记得了，可惜了，看了才发现，很多东西都在，一直都在，只是埋在很深的心里 要记得好好浇灌才好</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+	
+		<!--	10     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/10_convocation.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">毕业咯</h2>
+        <div class="separator"></div>
+        <p class="text">遗憾 当时因为前几天刚请过假而不方便请假 没能陪你见证你的毕业典礼。但还是通过照片感受到了这振奋人心的时刻，叔叔阿姨老为你骄傲了。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		
+		<!--	11     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/11_lisalakeshore.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">救命啊！！</h2>
+        <div class="separator"></div>
+        <p class="text">那天你在湖边救了我一命。哈哈哈哈哈。多么开心的一瞬间。感恩感恩。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		
+		<!--	12     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/12_hedy2017.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">美</h2>
+        <div class="separator"></div>
+        <p class="text">这张照片美死了，我可喜欢了，小马尾衬托的气质特精神干练，而且一看状态特别好，一身打扮也特有范，关键是照相人水平好嘿嘿。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+		
+		<!--	13     -->	
+	<figure class="overlay-figure">
+  <div class="overlay-figure-content">
+    <img src="images/13_heart.jpg">
+    <div class="overlay-figure-background"></div>
+  </div>
+  <figcaption class="overlay-figure-caption">
+    <div class="contents"> 
+      <div class="contents-stack">
+        <h2 class="title">未来</h2>
+        <div class="separator"></div>
+        <p class="text">好啦，看着这些照片想到了好多好多想说的话，但是位置不够大，删删减减，可哪句又都不想删掉，后来想想，反正有些不说你也懂，就算不懂也能接收到我的感情的，我才放心些。借着你生日的时间回顾了下我们经历的，才更加觉得我们更要好好珍惜我们的友谊，两个很不相同的人，但是很多关键的价值观是相同的，不同的那部分也是可以互相理解和尊重的。多可贵，多难的。省略一万字。最后没有位置了，只好把这颗小花填充的心所能带来的想象送给你和你的爱情，文字留白。未来是美好的。也希望你爱的人都好，尤其爸爸妈妈。最后 “生日快乐”。</p>
+      </div>
+    </div>
+  </figcaption>
+</figure>
+</div>
+</body>
+
+</html>
